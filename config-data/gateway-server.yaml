@@ -15,8 +15,8 @@ spring:
         locator:
           enabled: true # Habilita la detección automática de servicios registrados en Eureka
       routes:
-        - id: ms-clients
-          uri: lb://ms-clients # Nombre del servicio en Eureka
+        - id: ms-client
+          uri: lb://ms-client # Nombre del servicio en Eureka
           predicates:
             - Path=/api/v1/clients/** # Path que redirige a ms-clients
         - id: ms-loans
