@@ -2,6 +2,8 @@ server:
   port: 8080
 
 eureka:
+  instance:
+    preferIpAddress: true
   client:
     fetch-registry: true
     register-with-eureka: true
@@ -13,12 +15,18 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true # Habilita la detección automática de servicios registrados en Eureka
+          enabled: true
+      globalcors: # Configuración global para habilitar CORS
+        cors-configurations:
+          '[/**]': # Aplica a todas las rutas del Gateway
+            allowedOrigins: '*' # Permite cualquier origen (puedes restringir a tu frontend si es necesario)
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
         - id: ms-client
           uri: lb://ms-client # Nombre del servicio en Eureka
           predicates:
-            - Path=/api/v1/clients/** # Path que redirige a ms-clients
+            - Path=/api/v1/clients/** # Path que redirige a ms-client
         - id: ms-loans
           uri: lb://ms-requestCredit # Nombre del servicio en Eureka
           predicates:
