@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/clients")
-@CrossOrigin("*")
 public class ClientController {
     @Autowired
     ClientServices clientServices;
@@ -27,7 +26,7 @@ public class ClientController {
         return ResponseEntity.ok(client);
     }
 
-    @GetMapping("/{rut}")
+    @GetMapping("/rut/{rut}")
     public ResponseEntity<ClientEntity> getClientByRut(@PathVariable String rut) {
         ClientEntity client = clientServices.getClientByRut(rut);
         return ResponseEntity.ok(client);

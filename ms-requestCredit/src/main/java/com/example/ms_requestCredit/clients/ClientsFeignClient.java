@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @FeignClient(value = "ms-client", path = "/api/v1/clients", configuration = {FeignClientConfig.class})
 public interface ClientsFeignClient {
 
@@ -16,7 +17,7 @@ public interface ClientsFeignClient {
     @GetMapping("/{id}")
     public ResponseEntity<ClientEntity> getClientById(@PathVariable Long id);
 
-    @GetMapping("/{rut}")
+    @GetMapping("/rut/{rut}")
     public ResponseEntity<ClientEntity> getClientByRut(@PathVariable String rut);
 
 }
