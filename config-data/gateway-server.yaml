@@ -16,22 +16,22 @@ spring:
       discovery:
         locator:
           enabled: true
-      globalcors: # Configuración global para habilitar CORS
+      globalcors:
         cors-configurations:
-          '[/**]': # Aplica a todas las rutas del Gateway
-            allowedOrigins: '*' # Permite cualquier origen (puedes restringir a tu frontend si es necesario)
+          '[/**]':
+            allowedOrigins: '*'
             allowedMethods: "*"
             allowedHeaders: "*"
       routes:
         - id: ms-client
-          uri: lb://ms-client # Nombre del servicio en Eureka
+          uri: lb://ms-client
           predicates:
-            - Path=/api/v1/clients/** # Path que redirige a ms-client
+            - Path=/api/v1/clients/**
         - id: ms-loans
-          uri: lb://ms-requestCredit # Nombre del servicio en Eureka
+          uri: lb://ms-requestCredit
           predicates:
-            - Path=/api/v1/loanType/** # Path que redirige a ms-loans
+            - Path=/api/v1/loanType/**
         - id: ms-simulation
-          uri: lb://ms-simulation # Nombre del servicio en Eureka
+          uri: lb://ms-simulation
           predicates:
-            - Path=/api/v1/credit/** # Path que redirige a ms-simulation
+            - Path=/api/v1/credit/**
