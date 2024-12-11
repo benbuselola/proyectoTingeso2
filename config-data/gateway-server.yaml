@@ -19,9 +19,17 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: '*'
-            allowedMethods: "*"
-            allowedHeaders: "*"
+            allowedOrigins:
+              - "http://127.0.0.1:3000" # Permite específicamente este origen
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
       routes:
         - id: ms-client
           uri: lb://ms-client
